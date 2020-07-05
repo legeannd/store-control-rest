@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'product.apps.ProductConfig'
+    'product.apps.ProductConfig',
+    'users.apps.UsersConfig'
 ]
 
 MIDDLEWARE = [
@@ -80,14 +81,13 @@ WSGI_APPLICATION = 'storecontrolapp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'store-control',
+        'NAME': 'store_control',
         'USER': 'postgres',
         'PASSWORD': 'docker',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -123,7 +123,7 @@ USE_TZ = True
 
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
-    'http://localhost:8081',
+    'http://localhost:3000',
 )
 
 # Static files (CSS, JavaScript, Images)

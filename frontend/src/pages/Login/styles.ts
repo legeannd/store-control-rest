@@ -79,6 +79,10 @@ export const Input = styled.div`
     color: #fff;
     font-weight: bold;
     font-size: 24px;
+    transition: background .2s;
 
+    &:hover {
+      background: rgba(231, 76, 60, 0.8);
+    }
   }
 `;

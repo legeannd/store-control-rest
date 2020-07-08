@@ -9,14 +9,25 @@ import { Container, Card, CardHeader, Input } from './styles';
 const Login: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
   const history = useHistory();
+
+  const storagedHeader = sessionStorage.getItem('@StoreControl:headers');
+
+  if ( storagedHeader ) {
+    history.replace('/dashboard', { headers: storagedHeader })
+  }
+
 
   function handleSignin(): void{
     alert('clicou no cadastro');
   }
 
   async function handleLogin(): Promise<void> {
+
+    if ( !username || !password ) {
+      alert("Digite o usuário e senha!");
+      return;
+    }
 
     try {
       const response = await api.post('/user/obtain_token/', {
@@ -27,11 +38,12 @@ const Login: React.FC = () => {
       const token = response.data.token;
 
       const headers = {
-        'Content-type': 'application/json',
         'Authorization': `Bearer ${token}`
       }
 
-      history.push('/dashboard', { headers: headers});
+      sessionStorage.setItem('@StoreControl:headers', JSON.stringify(headers));
+
+      history.replace('/dashboard', { headers: headers});
 
     } catch (err) {
       alert('Usuário ou senha inválidos');

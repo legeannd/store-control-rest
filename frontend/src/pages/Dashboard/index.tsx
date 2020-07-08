@@ -49,6 +49,14 @@ const Dashboard: React.FC = () => {
     }
   }
 
+  function handleEditProduct(id: number): void {
+    history.push('/edit-product', {id});
+  }
+
+  function handleCreateProduct(): void {
+    history.push('/create-product')
+  }
+
   function handleLogout(): void {
     sessionStorage.clear();
     history.replace('/');
@@ -61,9 +69,9 @@ const Dashboard: React.FC = () => {
         <Header><span>Store Control</span></Header>
         <Body>
           <div className="add-product-btn">
-            <button>Cadastrar Produto</button>
+            <button onClick={handleCreateProduct}>Cadastrar Produto</button>
           </div>
-          {products.length == 0 ? (
+          {products.length === 0 ? (
             <Card>
               <div className="info-1">
                 <span className="title">Nenhum produto cadastrado. Cadastre um produto para utilizar o sistema</span>
@@ -82,7 +90,7 @@ const Dashboard: React.FC = () => {
                 <span className="barcode">Código de barras: {product.barcode}</span>
               </div>
               <div className="product-btn">
-                <button><FiEdit color="green"/></button>
+                <button onClick={() => handleEditProduct(product.id)}><FiEdit color="green"/></button>
                 <button onClick={() => handleDeleteProduct(product.id)}><FiTrash color="red"/></button>
               </div>
             </Card>

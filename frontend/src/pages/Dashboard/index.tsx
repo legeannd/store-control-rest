@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { FiTrash, FiEdit } from 'react-icons/fi';
 
 import api from '../../services/api';
+import formatValue from '../../utils/formatValue';
 
 import { Container, Header, Body, Card } from './styles';
 
@@ -86,7 +87,7 @@ const Dashboard: React.FC = () => {
               </div>
               <div className="info-2">
                 <span className="quantity">Em estoque: {product.quantity}</span>
-                <span className="value">Valor: {product.value}</span>
+                <span className="value">Valor: {formatValue(product.value)}</span>
                 <span className="barcode">Código de barras: {product.barcode}</span>
               </div>
               <div className="product-btn">

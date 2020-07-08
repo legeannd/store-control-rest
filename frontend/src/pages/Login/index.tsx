@@ -19,7 +19,7 @@ const Login: React.FC = () => {
 
 
   function handleSignin(): void{
-    alert('clicou no cadastro');
+    history.push('/signin');
   }
 
   async function handleLogin(): Promise<void> {
@@ -50,7 +50,6 @@ const Login: React.FC = () => {
     }
 
   }
-
 
   return (
     <>

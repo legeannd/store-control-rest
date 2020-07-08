@@ -11,7 +11,6 @@ export const Container = styled.div`
 
 export const Card = styled.div`
   width: 720px;
-  height: 720px;
   background: #FFF;
   border: 0px solid;
   border-radius: 5px;
@@ -35,13 +34,16 @@ export const CardHeader = styled.div`
 `;
 export const Input = styled.div`
 
-  padding: 0 10px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 
   .input-group {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 200px;
+    margin: 50px 0 0 0;
+
   }
 
   input {
@@ -55,19 +57,31 @@ export const Input = styled.div`
     border-radius: 5px;
     caret-color: #000;
     padding: 16px;
-
-    & + input {
-      margin: 50px 0;
-    }
+    margin-bottom: 50px;
 
     &::placeholder {
       color: rgba(0, 0, 0, 0.5);
     }
+
   }
 
+  .name-block, .password-block {
+      width: 600px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      input {
+        width: 250px;
+      }
+    }
+
+
   .button-group {
+    width: 600px;
+    margin-bottom: 50px;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
   }
 
   button {

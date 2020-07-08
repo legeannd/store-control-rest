@@ -31,15 +31,29 @@ const Dashboard: React.FC = () => {
   }, []);
 
   async function loadProducts(): Promise<void> {
-    const response = await api.get('/api/products/', {headers: authToken});
+    try {
+      const response = await api.get('/api/products/', {headers: authToken});
+      setProducts(response.data);
+    } catch (err) {
+      alert(err);
+    }
+  }
 
-    setProducts(response.data);
+  async function handleDeleteProduct(id: number): Promise<void> {
+    try {
+      await api.delete(`/api/products/${id}`, {headers: authToken});
+      const productsUpdated = products.filter(product => product.id !== id);
+      setProducts(productsUpdated);
+    } catch (err) {
+      alert(err);
+    }
   }
 
   function handleLogout(): void {
     sessionStorage.clear();
     history.replace('/');
   }
+
 
   return (
     <>
@@ -49,6 +63,13 @@ const Dashboard: React.FC = () => {
           <div className="add-product-btn">
             <button>Cadastrar Produto</button>
           </div>
+          {products.length == 0 ? (
+            <Card>
+              <div className="info-1">
+                <span className="title">Nenhum produto cadastrado. Cadastre um produto para utilizar o sistema</span>
+              </div>
+            </Card>
+          ) : ''}
           {products.map(product => (
             <Card key={product.id}>
               <div className="info-1">
@@ -62,7 +83,7 @@ const Dashboard: React.FC = () => {
               </div>
               <div className="product-btn">
                 <button><FiEdit color="green"/></button>
-                <button><FiTrash color="red"/></button>
+                <button onClick={() => handleDeleteProduct(product.id)}><FiTrash color="red"/></button>
               </div>
             </Card>
           ))}

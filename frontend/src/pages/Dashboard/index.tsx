@@ -36,6 +36,11 @@ const Dashboard: React.FC = () => {
     setProducts(response.data);
   }
 
+  function handleLogout(): void {
+    sessionStorage.clear();
+    history.replace('/');
+  }
+
   return (
     <>
       <Container>
@@ -61,6 +66,9 @@ const Dashboard: React.FC = () => {
               </div>
             </Card>
           ))}
+          <div className="logout-btn">
+            <button onClick={handleLogout}>Sair</button>
+          </div>
         </Body>
       </Container>
     </>

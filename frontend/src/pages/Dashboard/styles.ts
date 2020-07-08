@@ -44,13 +44,12 @@ export const Body = styled.div`
   flex-wrap: wrap;
   justify-content: center;
 
-  .add-product-btn {
+  .add-product-btn, .logout-btn {
     max-width: 1120px;
     margin: 100px 0;
     display: flex;
     flex: 1 0 100%;
     justify-content: flex-end;
-
   }
 `;
 

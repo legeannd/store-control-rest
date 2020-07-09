@@ -1,6 +1,6 @@
 <h1>Store Control</h1>
 
-![](https://i.ibb.co/m8G5cRm/ezgif-com-resize.gif)
+![](uploads/banner.gif)
 
 ![stacks](https://img.shields.io/badge/Django-v3.0.8-brightgreen) ![stacks](https://img.shields.io/badge/djangorestframework-v3.11.0-brightgreen) ![stacks](https://img.shields.io/badge/ReactJS-v16.13.1-brightgreen) ![stacks](https://img.shields.io/badge/Stack-Python-blue) ![stacks](https://img.shields.io/badge/Stack-Typescript-blue) ![GitHub](https://img.shields.io/github/license/legeannd/store-control)
 

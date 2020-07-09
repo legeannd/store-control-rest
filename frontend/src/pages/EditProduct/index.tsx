@@ -15,10 +15,11 @@ interface Product {
 }
 
 const Dashboard: React.FC = () => {
+  const [product, setProduct] = useState<Product>();
   const [title, setTitle] = useState('');
-  const [quantity, setQuantity] = useState('');
+  const [quantity, setQuantity] = useState(0);
   const [description, setDescription] = useState('');
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState(0);
   const [barcode, setBarcode] = useState('');
   const history = useHistory();
   const location = useLocation();
@@ -42,12 +43,12 @@ const Dashboard: React.FC = () => {
 
   async function loadProduct(): Promise<void> {
     const response = await api.get(`/api/products/${id}/`, {headers: authToken});
-    const product = response.data;
-    setTitle(product.title);
-    setQuantity(product.quantity);
-    setDescription(product.description);
-    setValue(product.value);
-    setBarcode(product.barcode);
+    setProduct(response.data);
+    setTitle(response.data.title);
+    setQuantity(response.data.quantity);
+    setDescription(response.data.description);
+    setValue(response.data.value);
+    setBarcode(response.data.barcode);
   }
 
   useEffect(() => {
@@ -56,7 +57,12 @@ const Dashboard: React.FC = () => {
 
   async function handleEditProduct(): Promise<void> {
 
-    const product = {
+    if ( title === product?.title && quantity === product.quantity && description === product.description && value === product.value && barcode === product.barcode ) {
+      alert("Você não realizou alterações no produto.");
+      return;
+    }
+
+    const productEdited = {
       title,
       quantity,
       description,
@@ -65,7 +71,7 @@ const Dashboard: React.FC = () => {
     }
 
     try {
-      await api.put(`/api/products/${id}/`, product, { headers: authToken });
+      await api.put(`/api/products/${id}/`, productEdited, { headers: authToken });
       alert("Produto editado com sucesso");
       history.push('/dashboard');
     } catch (err) {
@@ -92,7 +98,7 @@ const Dashboard: React.FC = () => {
                 placeholder="Quantidade"
                 type="number"
                 value={quantity}
-                onChange={(e) => setQuantity(e.target.value)}
+                onChange={(e) => setQuantity(Number(e.target.value))}
               />
               <textarea
                 placeholder="Descrição"
@@ -105,7 +111,7 @@ const Dashboard: React.FC = () => {
                   type="number"
                   step="0.01"
                   value={value}
-                  onChange={(e) => setValue(e.target.value)}
+                  onChange={(e) => setValue(Number(e.target.value))}
                 />
                 <input
                   placeholder="Código de barras"

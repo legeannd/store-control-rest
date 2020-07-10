@@ -5,7 +5,7 @@
 ![stacks](https://img.shields.io/badge/Django-v3.0.8-brightgreen) ![stacks](https://img.shields.io/badge/djangorestframework-v3.11.0-brightgreen) ![stacks](https://img.shields.io/badge/ReactJS-v16.13.1-brightgreen) ![stacks](https://img.shields.io/badge/Stack-Python-blue) ![stacks](https://img.shields.io/badge/Stack-Typescript-blue) ![GitHub](https://img.shields.io/github/license/legeannd/store-control)
 
 
-Store control é um serviço web simples de cadastro de produto e cadastro de usuários que possam acessar o sistema, através de uma api que cuida dos cadastros. Backend feito utilizando a framework Django, e frontend feito utilizando a framework React. 
+Store control é um serviço web simples de cadastro de produto e cadastro de usuários que possam acessar o sistema, através de uma api que cuida dos cadastros. Backend feito utilizando a framework Django, e frontend feito utilizando a framework ReactJS. 
 
 ## Como instalar
 Para instalar o projeto, você irá precisar ter o Python 3, Virtualenv, pip, e NPM ou Yarn instalados para baixar as dependências. Clone os arquivos do projeto e execute os comandos abaixo.
@@ -45,7 +45,7 @@ npm start
 
 #### Yarn
 ```bash
-cd web
+cd frontend
 yarn install
 yarn start
 ```

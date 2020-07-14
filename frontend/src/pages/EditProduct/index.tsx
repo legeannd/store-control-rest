@@ -14,6 +14,10 @@ interface Product {
   barcode: string;
 }
 
+interface LocationProps extends Location {
+  id: number
+}
+
 const Dashboard: React.FC = () => {
   const [product, setProduct] = useState<Product>();
   const [title, setTitle] = useState('');
@@ -21,9 +25,10 @@ const Dashboard: React.FC = () => {
   const [description, setDescription] = useState('');
   const [value, setValue] = useState(0);
   const [barcode, setBarcode] = useState('');
-  const history = useHistory();
-  const location = useLocation();
   const storagedSession = sessionStorage.getItem('@StoreControl:headers');
+  const history = useHistory();
+  const location = useLocation<LocationProps>();
+
   let authToken = {};
   if ( !storagedSession ) {
     history.replace('/');
@@ -37,9 +42,8 @@ const Dashboard: React.FC = () => {
   } catch (err) {
     history.replace('/dashboard');
   }
-  useEffect(() => {
 
-  }, []);
+  console.log(location.state);
 
   async function loadProduct(): Promise<void> {
     const response = await api.get(`/api/products/${id}/`, {headers: authToken});
